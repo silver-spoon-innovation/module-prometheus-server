@@ -1,15 +1,15 @@
 provider "kubernetes" {
-	cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
-	host                   = var.kubernetes_cluster_endpoint
-	token                  = var.kubernetes_cluster_token
+  cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
+  host                   = var.kubernetes_cluster_endpoint
+  token                  = var.kubernetes_cluster_token
 }
 
 provider "helm" {
-	kubernetes {
-		cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
-		host                   = var.kubernetes_cluster_endpoint
-		token                  = var.kubernetes_cluster_token
-	}
+  kubernetes {
+    cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
+    host                   = var.kubernetes_cluster_endpoint
+    token                  = var.kubernetes_cluster_token
+  }
 }
 
 resource "kubernetes_namespace" "ns-monitoring" {

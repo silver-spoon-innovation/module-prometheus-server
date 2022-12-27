@@ -1,23 +1,23 @@
 variable "kubernetes_cluster_id" {
-	type = string
+  type = string
 }
 
 variable "kubernetes_cluster_cert_data" {
-	type = string
+  type = string
 }
 
 variable "kubernetes_cluster_endpoint" {
-	type = string
+  type = string
 }
 
 variable "kubernetes_cluster_name" {
-	type = string
+  type = string
 }
 
 variable "kubernetes_cluster_token" {
-	type = string
+  type = string
 }
 
 variable "eks_nodegroup_id" {
-	type = string
+  type = string
 }
