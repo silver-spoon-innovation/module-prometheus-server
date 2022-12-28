@@ -21,3 +21,7 @@ variable "kubernetes_cluster_token" {
 variable "eks_nodegroup_id" {
   type = string
 }
+
+variable "aws_region" {
+  type = string
+}
