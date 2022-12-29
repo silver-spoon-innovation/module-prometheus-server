@@ -37,6 +37,7 @@ resource "helm_release" "kube-prometheus-sssm" {
   chart            = "kube-prometheus-stack"
   namespace        = kubernetes_namespace.ns-monitoring.metadata.0.name
   create_namespace = false
+  timeout          = 1500 
 
   depends_on = [kubernetes_namespace.ns-monitoring]
 }
