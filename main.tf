@@ -1,22 +1,27 @@
 provider "aws" {
   region = var.aws_region
-}
-
-data "aws_eks_cluster_auth" "ms-sssm" {
-  name = var.kubernetes_cluster_id
+  profile = "default"
 }
 
 provider "kubernetes" {
   cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
   host                   = var.kubernetes_cluster_endpoint
-  token                  = data.aws_eks_cluster_auth.ms-sssm.token
+  exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
+      command     = "aws"
+    }
 }
 
 provider "helm" {
   kubernetes {
     cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
     host                   = var.kubernetes_cluster_endpoint
-    token                  = data.aws_eks_cluster_auth.ms-sssm.token
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
+      command     = "aws"
+    }
   }
 }
 
