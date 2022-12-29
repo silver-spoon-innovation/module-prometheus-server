@@ -14,10 +14,6 @@ variable "kubernetes_cluster_name" {
   type = string
 }
 
-variable "kubernetes_cluster_token" {
-  type = string
-}
-
 variable "eks_nodegroup_id" {
   type = string
 }
