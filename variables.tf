@@ -1,3 +1,7 @@
+variable "aws_profile" {
+  type = string
+}
+
 variable "kubernetes_cluster_id" {
   type = string
 }
