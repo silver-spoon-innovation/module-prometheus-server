@@ -38,6 +38,41 @@ resource "helm_release" "kube-prometheus-sssm" {
   namespace        = kubernetes_namespace.ns-monitoring.metadata.0.name
   create_namespace = false
   timeout          = 1500
+  depends_on       = [kubernetes_namespace.ns-monitoring]
 
-  depends_on = [kubernetes_namespace.ns-monitoring]
+  set {
+    name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName"
+    value = "gp2"
+    type  = "string"
+  }
+
+  set {
+    name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes"
+    value = "[\"ReadWriteOnce\"]"
+    type  = "string"
+  }
+
+  set {
+    name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage"
+    value = "50Gi"
+    type  = "string"
+  }
+
+  set {
+    name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.storageClassName"
+    value = "gp2"
+    type  = "string"
+  }
+
+  set {
+    name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes"
+    value = "[\"ReadWriteOnce\"]"
+    type  = "string"
+  }
+
+  set {
+    name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage"
+    value = "50Gi"
+    type  = "string"
+  }
 }
