@@ -42,7 +42,7 @@ resource "helm_release" "kube-prometheus-sssm" {
 
   set {
     name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName"
-    value = "gp2"
+    value = var.storage_class_name
     type  = "string"
   }
 
@@ -54,13 +54,13 @@ resource "helm_release" "kube-prometheus-sssm" {
 
   set {
     name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage"
-    value = "50Gi"
+    value = var.storage_size
     type  = "string"
   }
 
   set {
     name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.storageClassName"
-    value = "gp2"
+    value = var.storage_class_name
     type  = "string"
   }
 
@@ -72,7 +72,7 @@ resource "helm_release" "kube-prometheus-sssm" {
 
   set {
     name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage"
-    value = "50Gi"
+    value = var.storage_size
     type  = "string"
   }
 }

@@ -25,3 +25,12 @@ variable "eks_nodegroup_id" {
 variable "aws_region" {
   type = string
 }
+
+variable "storage_class_name" {
+  type = string
+}
+
+variable "storage_size" {
+  type = string
+}
+
