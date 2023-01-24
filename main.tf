@@ -99,7 +99,7 @@ resource "helm_release" "prom-mongodb-sssm" {
 
   set {
     name   = "serviceMonitor.additionalLabels.release"
-    values = "prometheus"
+    value = "prometheus"
     type   = "string"
   }
 }
