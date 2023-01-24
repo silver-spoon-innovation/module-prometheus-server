@@ -34,3 +34,7 @@ variable "storage_size" {
   type = string
 }
 
+variable "mongodb_connection_strings" {
+  type = string
+}
+
