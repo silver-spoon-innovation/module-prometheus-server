@@ -41,12 +41,6 @@ resource "helm_release" "kube-prometheus-sssm" {
   depends_on       = [kubernetes_namespace.ns-monitoring]
 
   set {
-    name  = "prometheus.prometheusSpec.serviceMonitorSelector.matchLabels.release"
-    value = "mongodb-monitoring"
-    type  = "string"
-  }
-
-  set {
     name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName"
     value = var.storage_class_name
     type  = "string"
@@ -104,8 +98,8 @@ resource "helm_release" "prom-mongodb-sssm" {
   }
 
   set {
-    name   = "serviceMonitor.additionalLabels.matchLabels.release"
-    values = "mongodb-monitoring"
+    name   = "serviceMonitor.additionalLabels.release"
+    values = "prometheus"
     type   = "string"
   }
 }
