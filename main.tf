@@ -47,8 +47,8 @@ resource "helm_release" "kube-prometheus-sssm" {
   }
 
   set {
-    name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes"
-    value = "[\"ReadWriteOnce\"]"
+    name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.accessModes[0]"
+    value = "ReadWriteOnce"
     type  = "string"
   }
 
@@ -65,8 +65,8 @@ resource "helm_release" "kube-prometheus-sssm" {
   }
 
   set {
-    name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes"
-    value = "[\"ReadWriteOnce\"]"
+    name  = "alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.accessModes[0]"
+    value = "ReadWriteOnce"
     type  = "string"
   }
 
