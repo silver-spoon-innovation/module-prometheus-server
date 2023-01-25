@@ -92,10 +92,10 @@ resource "helm_release" "prom-mongodb-sssm" {
     type  = "string"
   }
 
-  # set {
-  #   name  = "serviceMonitor.enabled"
-  #   value = "true"
-  # }
+  set {
+    name  = "serviceMonitor.enabled"
+    value = "true"
+  }
 
   # set {
   #   name  = "serviceMonitor.namespace"
