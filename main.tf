@@ -98,8 +98,8 @@ resource "helm_release" "prom-mongodb-sssm" {
   }
 
   set {
-    name   = "serviceMonitor.additionalLabels.release"
-    value = "prometheus"
-    type   = "string"
+    name  = "serviceMonitor.namespace"
+    value = kubernetes_namespace.ns-monitoring.metadata.0.name
+    type  = "string"
   }
 }
