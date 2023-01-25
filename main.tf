@@ -84,7 +84,7 @@ resource "helm_release" "prom-mongodb-sssm" {
   namespace        = kubernetes_namespace.ns-monitoring.metadata.0.name
   create_namespace = false
   timeout          = 3600
-  depends_on       = [kubernetes_namespace.ns-monitoring]
+  depends_on       = [kubernetes_namespace.ns-monitoring, helm_release.kube-prometheus-sssm]
 
   set {
     name  = "mongodb.uri"
@@ -92,14 +92,14 @@ resource "helm_release" "prom-mongodb-sssm" {
     type  = "string"
   }
 
-  set {
-    name  = "serviceMonitor.enabled"
-    value = "true"
-  }
+  # set {
+  #   name  = "serviceMonitor.enabled"
+  #   value = "true"
+  # }
 
-  set {
-    name  = "serviceMonitor.namespace"
-    value = kubernetes_namespace.ns-monitoring.metadata.0.name
-    type  = "string"
-  }
+  # set {
+  #   name  = "serviceMonitor.namespace"
+  #   value = kubernetes_namespace.ns-monitoring.metadata.0.name
+  #   type  = "string"
+  # }
 }
