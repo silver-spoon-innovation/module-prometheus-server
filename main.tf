@@ -1,5 +1,5 @@
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
   profile = var.aws_profile
 }
 
@@ -7,10 +7,10 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(var.kubernetes_cluster_cert_data)
   host                   = var.kubernetes_cluster_endpoint
   exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
-      command     = "aws"
-    }
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name, "--profile", var.aws_profile]
+    command     = "aws"
+  }
 }
 
 provider "helm" {
@@ -19,7 +19,7 @@ provider "helm" {
     host                   = var.kubernetes_cluster_endpoint
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
+      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name, "--profile", var.aws_profile]
       command     = "aws"
     }
   }
